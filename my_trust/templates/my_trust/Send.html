@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Your Choice
+{% endblock %}
+
+{% block content %}
+
+    <p>
+    You are Decider. Now you have {{Constants.endowment_Decider}}. How much will you send to Receiver?
+    </p>
+
+
+    {% formfield group.sent_amount label=prompt %}
+    <p>
+    {% next_button %}
+    </p>
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

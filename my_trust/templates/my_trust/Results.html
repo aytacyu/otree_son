@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    {% if player.role == 'A' %}
+        <p>
+            You chose to send participant B {{ group.sent_amount }}.
+            Participant B returned {{ group.sent_back_amount }}.
+        </p>
+        <p>
+            You were initially endowed with {{ Constants.endowment_Decider }},
+            chose to send {{ group.sent_amount }}
+            thus you had {{ player1_period1_amount }} in Period 1,
+            In second period you endowed with {{ Constants.endowment_Receiver }},
+            received {{ group.sent_back_amount }}
+            thus you had {{ player1_period2_amount }} in Period 2
+            Your Payoff in this round   = <strong>{{ player.payoff }}</strong>
+        </p>
+    {% else %}
+        <p>
+            Participant A sent you {{ group.sent_amount }}.
+            You chose to send participant A {{ group.sent_back_amount }}.
+
+        </p>
+        <p>
+            You were initially endowed with {{ Constants.endowment_Receiver }},
+            received {{ group.sent_amount }}
+            thus you had {{ player2_period1_amount }} in Period 1,
+            In second period you endowed with {{ Constants.endowment_Decider }},
+            chose to send {{ group.sent_back_amount }}
+            thus you had {{ player2_period2_amount }} in Period 2,
+            Your Payoff in this round   = <strong>{{ player.payoff }}</strong>
+        </p>
+    {% endif %}
+
+    <p>{% next_button %}</p>
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

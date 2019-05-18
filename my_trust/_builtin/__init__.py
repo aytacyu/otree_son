@@ -1,4 +1,3 @@
-
 # Don't change anything in this file.
 from .. import models
 import otree.api
