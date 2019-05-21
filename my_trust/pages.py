@@ -39,7 +39,9 @@ class SendBack(Page):
     def vars_for_template(self):
 
         return {
-                'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2)
+                'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
+                'earnings': Constants.endowment_Receiver+self.group.sent_amount
+
         }
     """
     def sent_back_amount_max(self):
