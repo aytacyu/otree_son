@@ -7,10 +7,10 @@
 
 {% block content %}
 <p>
-    You are Participant B.
-    Participant A sent you {{group.sent_amount}}.
-    Now you have {{Constants.endowment_Decider}}.
-    How much will you send to Participant A?
+    Your Partner sent you {{group.sent_amount}}.
+    The earnings in this period are {{Constants.endowment_Receiver + {group.sent_amount}}.
+    Now, you are Decider and you have {{Constants.endowment_Decider}}.
+    How much will you send to your partner?
 </p>
 
     {% formfield group.sent_back_amount label=prompt %}

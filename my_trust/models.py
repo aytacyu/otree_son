@@ -17,7 +17,7 @@ tripled. The my_trust game was first proposed by
 class Constants(BaseConstants):
     name_in_url = 'my_trust'
     players_per_group = 2
-    num_rounds = 2
+    num_rounds = 10
 
     instructions_template = 'my_trust/instructions.html'
 

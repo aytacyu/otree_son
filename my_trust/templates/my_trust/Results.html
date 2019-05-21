@@ -9,8 +9,9 @@
 
     {% if player.role == 'A' %}
         <p>
-            You chose to send participant B {{ group.sent_amount }}.
-            Participant B returned {{ group.sent_back_amount }}.
+            The first Decider role was yours.
+            You chose to send your partner {{ group.sent_amount }}.
+            Your partner returned {{ group.sent_back_amount }}.
         </p>
         <p>
             You were initially endowed with {{ Constants.endowment_Decider }},
@@ -23,7 +24,8 @@
         </p>
     {% else %}
         <p>
-            Participant A sent you {{ group.sent_amount }}.
+            In the first period, you was Receiver.
+            Your partner sent you {{ group.sent_amount }}.
             You chose to send participant A {{ group.sent_back_amount }}.
 
         </p>

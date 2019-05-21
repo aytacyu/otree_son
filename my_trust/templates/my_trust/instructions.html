@@ -7,22 +7,34 @@
         Instructions
     </h3>
     <p>
-        You have been randomly and anonymously paired with another participant.
-        One of you will be selected at random to be participant A;
-        the other will be participant B.
-        You will learn whether you are participant A or B prior to making any
-        decision.
-    </p>
-    <p>
-        To start, participant A receives {{ Constants.endowment_Decider }};
-        participant B receives
-        nothing.
-        Participant A can send some or all of
-        his {{ Constants.endowment_Decider }} to participant B.
-        Before B receives this amount, it will be multiplied
-        by {{ Constants.multiplier }}. Once B receives
-        the tripled amount he can decide to send some or all of it to
-        A.
+        You have been randomly and anonymously
+        paired with another participant to play for a game.
+        <p>
+        Before the games begin,
+        one of you will be selected at random to be Decider;
+        the other will be Receiver.
+        <p>
+        In each second period, your role in the first period will be reversed.
+        So, you will be both a Decider and a Receiver in every round.
+        You will play this game 10 times, each time randomly match with your partner.
+        So, in every new round, your partner can be the new one ....
+        <p>
+        To start, Decider has {{ Constants.endowment_Decider }};
+        Receiver has {{ Constants.endowment_Receiver }} .
+        Decider will decide which part of {{ Constants.endowment_Decider }} to transfer to the Receiver.
+        After that, the roles are reversed and the second period of the round will be started.
+        In the second period, who is the Decider now,
+        will make a decision about to transfer
+        to Receiver.
+        After both periods of a round have been finished,
+        everybody will be informed about the transfer
+        which made to them and their earnings in that round.
+        Earnings in points in a round will be determined
+        by the product of the final value
+        when Decider with the final value when Receiver: EB x EO.
+        (The earnings in money will be determined
+        by multiplying the amount stated in points by 0,5₺.)
+
     </p>
 </div>
 </div>

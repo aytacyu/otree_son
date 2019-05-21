@@ -13,9 +13,9 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-    'name': 'my_trust',
-    'display_name': "Trust Game",
-    'num_demo_participants': 2,
+    'name': 'my_PoG',
+    'display_name': "PoGGame",
+    'num_demo_participants': 8,
     'app_sequence': ['my_trust'],
     }
     ]
@@ -24,7 +24,7 @@ SESSION_CONFIGS = [
         'name': 'my_simple_survey',
         'num_demo_participants': 3,
         'app_sequence': ['my_simple_survey'],
-    },
+},
 {
     'name': 'public_goods',
     'display_name': "Public Goods",
