@@ -15,8 +15,8 @@ SESSION_CONFIGS = [
     {
     'name': 'my_PoG',
     'display_name': "PoGGame",
-    'num_demo_participants': 8,
-    'app_sequence': ['my_trust'],
+    'num_demo_participants': 2,
+    'app_sequence': ['control'],
     }
     ]
 """
@@ -91,10 +91,10 @@ INSTALLED_APPS = ['otree']
 
 # inactive session configs
 ### {
-###     'name': 'my_trust',
+###     'name': 'control',
 ###     'display_name': "Trust Game",
 ###     'num_demo_participants': 2,
-###     'app_sequence': ['my_trust', 'payment_info'],
+###     'app_sequence': ['control', 'payment_info'],
 ### },
 ### {
 ###     'name': 'prisoner',
