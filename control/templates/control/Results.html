@@ -7,7 +7,7 @@
 
 {% block content %}
 
-    {% if player.role == 'A' %}
+{% if player.role == 'A' %}
         <p>
             The first Decider role was yours.
             You chose to send your partner {{ group.sent_amount }},
@@ -16,23 +16,25 @@
             Your partner returned {{ group.sent_back_amount }},
             and you had {{ player1_period2_amount }} in Period 2.
         <p>
-            Your Payoff in this round   = <strong>{{ player.payoff }}</strong>
+            Your Payoff in this round   = {{ player.payoff }}.
         </p>
-    {% else %}
+        {% else %}
         <p>
             In the first period, you was Receiver.
-            Your partner sent you {{ group.sent_amount }}.
+            Your partner sent you {{ group.sent_amount }},
             You chose to send your partner {{ group.sent_back_amount }}.
 
         </p>
         <p>
             You were initially endowed with {{ Constants.endowment_Receiver }},
-            received {{ group.sent_amount }}
-            thus you had {{ player2_period1_amount }} in Period 1,
+            received {{ group.sent_amount },}
+            thus you had {{ player2_period1_amount }} in Period 1.
+        </p>
             In second period you endowed with {{ Constants.endowment_Decider }},
-            chose to send {{ group.sent_back_amount }}
-            thus you had {{ player2_period2_amount }} in Period 2,
-            Your Payoff in this round   = <strong>{{ player.payoff }}</strong>
+            chose to send {{ group.sent_back_amount }},
+            thus you had { player2_period2_amount }} in Period 2.
+        </p>
+            Your Payoff in this round   = {{ player.payoff }}.
         </p>
     {% endif %}
 

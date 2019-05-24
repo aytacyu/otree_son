@@ -15,7 +15,7 @@ SESSION_CONFIGS = [
     {
     'name': 'my_PoG',
     'display_name': "PoGGame",
-    'num_demo_participants': 2,
+    'num_demo_participants': 8,
     'app_sequence': ['control'],
     }
     ]
