@@ -4,7 +4,10 @@ from .models import Constants
 
 
 class Introduction(Page):
-    pass
+    def vars_for_template(self):
+        return {
+                'color': '{}'.format(self.player.color)
+        }
 
 
 class Send(Page):

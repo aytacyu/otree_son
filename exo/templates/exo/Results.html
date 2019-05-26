@@ -2,7 +2,7 @@
 {% load otree %}
 
 {% block title %}
-    End of round, Results
+    Results
 {% endblock %}
 
 {% block content %}
@@ -41,13 +41,13 @@
 </table>
         <p>
             The first Decider role was yours.
-            You chose to send your partner </strong> {{ group.sent_amount }}</strong> ,
+            You chose to send your partner {{ group.sent_amount }},
             and you had {{ player1_period1_amount }} in Period 1.
         </p>
-            Your partner returned </strong> {{ group.sent_back_amount }}</strong> ,
+            Your partner returned {{ group.sent_back_amount }},
             and you had {{ player1_period2_amount }} in Period 2.
         <p>
-            Your Payoff in this round   = </strong> {{ player.payoff }}</strong> .
+            Your Payoff in this round   = {{ player.payoff }}.
         </p>
         {% else %}
         <p>
@@ -83,14 +83,14 @@
 </table>
         <p>
             In the first period, you was Receiver.
-            Your partner sent you </strong> {{ group.sent_amount }}</strong> ,
+            Your partner sent you {{ group.sent_amount }},
             you had {{ player2_period1_amount }} in Period 1.
           </p>
-            In second period, you chose to send your partner </strong> {{ group.sent_back_amount }} </strong> ,
+            In second period, you chose to send your partner {{ group.sent_back_amount }},
             thus you had {{ player2_period2_amount }} in Period 2.
 
         </p>
-            Your Payoff in this round   = </strong>{{ player.payoff }}</strong>.
+            Your Payoff in this round   = {{ player.payoff }}.
         </p>
     {% endif %}
 

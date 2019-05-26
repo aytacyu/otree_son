@@ -3,11 +3,12 @@ from otree.api import (
     Currency as c, currency_range
 )
 import random
+import itertools
 
 
 doc = """
-This is a standard 2-player control game where the amount sent by player 1 gets
-tripled. The control game was first proposed by
+This is a standard 2-player exo game where the amount sent by player 1 gets
+tripled. The exo game was first proposed by
 <a href="http://econweb.ucsd.edu/~jandreon/Econ264/papers/Berg%20et%20al%20GEB%201995.pdf" target="_blank">
     Berg, Dickhaut, and McCabe (1995)
 </a>.
@@ -15,12 +16,12 @@ tripled. The control game was first proposed by
 
 
 class Constants(BaseConstants):
-    name_in_url = 'control'
+    name_in_url = 'exo'
     players_per_group = 2
     num_rounds = 10
 
-    instructions_template = 'control/instructions.html'
-    table_template = 'control/table.html'
+    instructions_template = 'exo/instructions.html'
+    table_template = 'exo/table.html'
 
     # Initial amount allocated to players
     endowment_Decider = c(9)
@@ -30,8 +31,8 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def creating_session(self):
-        self.group_randomly()
-
+        for p in self.get_players():
+            p.color = random.choice(['BLUE', 'RED'])
 
 class Group(BaseGroup):
     sent_amount = models.CurrencyField(
@@ -52,6 +53,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-
+    color = models.StringField()
     def role(self):
         return {1: 'A', 2: 'B'}[self.id_in_group]

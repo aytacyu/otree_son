@@ -13,8 +13,14 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-    'name': 'my_PoG',
-    'display_name': "PoGGame",
+    'name': 'my_PoG_exo',
+    'display_name': "PoGGameExo",
+    'num_demo_participants': 2,
+    'app_sequence': ['exo'],
+    },
+    {
+    'name': 'my_PoG_control',
+    'display_name': "PoGGameControl",
     'num_demo_participants': 2,
     'app_sequence': ['control'],
     },
@@ -91,10 +97,10 @@ INSTALLED_APPS = ['otree']
 
 # inactive session configs
 ### {
-###     'name': 'control',
+###     'name': 'exo',
 ###     'display_name': "Trust Game",
 ###     'num_demo_participants': 2,
-###     'app_sequence': ['control', 'payment_info'],
+###     'app_sequence': ['exo', 'payment_info'],
 ### },
 ### {
 ###     'name': 'prisoner',
