@@ -72,11 +72,35 @@ class Results(Page):
 class OverallResults(Page):
     """This page displays the end of game data """
 
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
     def vars_for_template(self):
+        cumulative_payoff = sum([p.payoff for p in self.player.in_all_rounds()])
         return {
-            'overall_earnings': self.player.overall_payoff
+            'overall_earnings': cumulative_payoff
         }
 
+
+class Survey(Page):
+    """This page displays the questionnaire for each player"""
+
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+    form_model = 'player'
+    form_fields = ['department','age','gender','average_monthly_income',
+                   'Choice_of_investment_options',
+                   'Choice_of_investment_options2',
+                   'Choice_of_investment_options3',
+                   'Choice_of_investment_options4',
+                   'Choice_of_investment_options5',
+                   'Choice_of_investment_options6',
+                   'Choice_of_investment_options7',
+                   'Choice_of_investment_options8',
+                   'Choice_of_investment_options9',
+                   'Choice_of_investment_options10'
+                   ]
 
 page_sequence = [
     Introduction,
@@ -85,5 +109,6 @@ page_sequence = [
     SendBack,
     ResultsWaitPage,
     Results,
-    OverallResults
+    OverallResults,
+    Survey
 ]

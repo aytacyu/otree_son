@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+Questiannaire
+{% endblock %}
+
+{% block content %}
+
+
+{% formfields %}
+
+
+    <p>{% next_button %}</p>
+
+{% include Constants.table_template %}
+
+{% endblock %}
+
