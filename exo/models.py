@@ -18,7 +18,7 @@ tripled. The exo game was first proposed by
 class Constants(BaseConstants):
     name_in_url = 'exo'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 2
 
     instructions_template = 'exo/instructions.html'
     table_template = 'exo/table.html'
@@ -50,9 +50,11 @@ class Group(BaseGroup):
         p2 = self.get_player_by_id(2)
         p1.payoff = (Constants.endowment_Decider - self.sent_amount) *( Constants.endowment_Receiver + self.sent_back_amount )
         p2.payoff = (Constants.endowment_Decider - self.sent_back_amount) *( Constants.endowment_Receiver + self.sent_amount )
-
+        p1.overall_payoff += p1.payoff
+        p2.overall_payoff += p2.payoff
 
 class Player(BasePlayer):
     color = models.StringField()
+    overall_payoff = models.CurrencyField(initial=0)
     def role(self):
         return {1: 'A', 2: 'B'}[self.id_in_group]

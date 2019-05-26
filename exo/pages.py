@@ -5,8 +5,10 @@ from .models import Constants
 
 class Introduction(Page):
     def vars_for_template(self):
+        partner = self.player.get_others_in_group()[0]
         return {
-                'color': '{}'.format(self.player.color)
+                'your_color': '{}'.format(self.player.color),
+                'partner_color': '{}'.format(partner.color)
         }
 
 
@@ -67,6 +69,14 @@ class Results(Page):
             'player2_period2_amount': Constants.endowment_Decider - self.group.sent_back_amount
         }
 
+class OverallResults(Page):
+    """This page displays the end of game data """
+
+    def vars_for_template(self):
+        return {
+            'overall_earnings': self.player.overall_payoff
+        }
+
 
 page_sequence = [
     Introduction,
@@ -75,4 +85,5 @@ page_sequence = [
     SendBack,
     ResultsWaitPage,
     Results,
+    OverallResults
 ]
