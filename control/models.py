@@ -3,6 +3,7 @@ from otree.api import (
     Currency as c, currency_range
 )
 import random
+import itertools
 
 
 doc = """
@@ -30,7 +31,9 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def creating_session(self):
-        self.group_randomly()
+        colors = itertools.cycle(['BLUE', 'RED'])
+        for p in self.get_players():
+            p.color = next(colors)
 
 
 class Group(BaseGroup):
@@ -52,6 +55,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-
+    color = models.StringField()
     def role(self):
         return {1: 'A', 2: 'B'}[self.id_in_group]

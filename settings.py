@@ -17,7 +17,7 @@ SESSION_CONFIGS = [
     'display_name': "PoGGame",
     'num_demo_participants': 2,
     'app_sequence': ['control'],
-    }
+    },
     ]
 """
 {
