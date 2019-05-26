@@ -31,10 +31,13 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def creating_session(self):
-        colors = itertools.cycle(['BLUE', 'RED'])
+        #print("round number:"+str(self.round_number))
+        i=1
         for p in self.get_players():
-            p.color = next(colors)
-
+            p.color = random.choice(['BLUE', 'RED'])
+            i+=1
+            #p.label = "player"+str(i)
+            #print(p.label,p.color)
 
 class Group(BaseGroup):
     sent_amount = models.CurrencyField(
@@ -56,5 +59,6 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     color = models.StringField()
+    label = models.StringField()
     def role(self):
         return {1: 'A', 2: 'B'}[self.id_in_group]
