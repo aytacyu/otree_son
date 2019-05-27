@@ -17,12 +17,12 @@ tripled. The control game was first proposed by
 class Constants(BaseConstants):
     name_in_url = 'control'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 1
 
     instructions_template = 'control/instructions.html'
     table_template = 'control/table.html'
 
-    # Initial amount allocated to players
+    # Initial amount allocated to players+
     endowment_Decider = c(9)
     endowment_Receiver = c(1)
     multiplier = 1
