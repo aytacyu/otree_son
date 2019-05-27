@@ -32,9 +32,12 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def creating_session(self):
-        for p in self.get_players():
-            p.color = random.choice(['BLUE', 'RED'])
-
+        if self.round_number == 1:
+            for p in self.get_players():
+                p.color = random.choice(['BLUE', 'RED'])
+        else:
+            for p in self.get_players():
+                p.color = p.in_round(self.round_number - 1).color
 class Group(BaseGroup):
     sent_amount = models.CurrencyField(
         min=0, max=Constants.endowment_Decider-2,
