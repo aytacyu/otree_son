@@ -38,6 +38,7 @@ class Subsession(BaseSubsession):
         else:
             for p in self.get_players():
                 p.color = p.in_round(self.round_number - 1).color
+        self.group_randomly()
 class Group(BaseGroup):
     sent_amount = models.CurrencyField(
         min=0, max=Constants.endowment_Decider-2,
