@@ -2,18 +2,15 @@
 {% load otree %}
 
 {% block title %}
-Questiannaire
+   Questionnaire
 {% endblock %}
 
 {% block content %}
 
-
-{% formfields %}
-
+     {% formfields %}
 
     <p>{% next_button %}</p>
 
-{% include Constants.table_template %}
 
 {% endblock %}
 

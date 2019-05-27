@@ -2,16 +2,16 @@
 {% load otree %}
 
 {% block title %}
-    Second Period, Your Choice
+    Period 2, Your Choice
 {% endblock %}
 
 {% block content %}
-
+<p>
     Your Partner sent you {{group.sent_amount}} .
     Your earnings at the end of the first period are {{earnings}}.
     Now, you are Decider and you have {{Constants.endowment_Decider}}.
     How much will you send to your partner?
-    </p>
+</p>
 
     {% formfield group.sent_back_amount label=prompt %}
     <p>{% next_button %}</p>

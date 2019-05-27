@@ -23,14 +23,15 @@ SESSION_CONFIGS = [
     'display_name': "PoGGameControl",
     'num_demo_participants': 2,
     'app_sequence': ['control'],
-    },
+    }
     ]
 """
-{
-        'name': 'my_simple_survey',
-        'num_demo_participants': 3,
-        'app_sequence': ['my_simple_survey'],
-},
+    {
+    'name': 'simple_survey',
+    'num_demo_participants': 2,
+    'app_sequence': ['simple_survey'],
+    }
+
 {
     'name': 'public_goods',
     'display_name': "Public Goods",

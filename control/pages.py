@@ -1,5 +1,5 @@
 from otree.api import Currency as c, currency_range
-from ._builtin import Page, WaitPage
+from ._builtin import Page, WaitPage, SurveyPage
 from .models import Constants
 
 
@@ -16,11 +16,11 @@ class Send(Page):
 
     def is_displayed(self):
         return self.player.id_in_group == 1
+
     def vars_for_template(self):
         return {
                 'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2)
         }
-
 
 class SendBackWaitPage(WaitPage):
     pass
@@ -75,7 +75,7 @@ class OverallResults(Page):
             'overall_earnings': cumulative_payoff
         }
 
-class Survey(Page):
+class Survey(SurveyPage):
     """This page displays the questionnaire for each player"""
 
     def is_displayed(self):
@@ -96,6 +96,8 @@ class Survey(Page):
                    ]
 
 page_sequence = [
+
+
     Introduction,
     Send,
     SendBackWaitPage,
@@ -104,4 +106,5 @@ page_sequence = [
     Results,
     OverallResults,
     Survey
+
 ]

@@ -17,7 +17,7 @@ tripled. The control game was first proposed by
 class Constants(BaseConstants):
     name_in_url = 'control'
     players_per_group = 2
-    num_rounds = 1
+    num_rounds = 10
 
     instructions_template = 'control/instructions.html'
     table_template = 'control/table.html'
@@ -55,6 +55,7 @@ class Player(BasePlayer):
 
     def role(self):
         return {1: 'A', 2: 'B'}[self.id_in_group]
+
 
     department = models.StringField()
 
