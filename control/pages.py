@@ -4,8 +4,11 @@ from .models import Constants
 
 
 class Introduction(Page):
-    pass
-
+    def vars_for_template(self):
+        partner = self.player.get_others_in_group()[0]
+        return {
+                'round_number': '{}' .format(self.round_number)
+        }
 
 class Send(Page):
     """This page is only for P1

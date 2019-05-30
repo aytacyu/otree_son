@@ -2,13 +2,13 @@
 {% load otree %}
 
 {% block title %}
-    Instructions
+   {{ round_number }} . ROUND
 {% endblock %}
 
 {% block content %}
 
-    {% include Constants.instructions_template %}
-{% include Constants.table_template %}
+    Now, you will play a gift giving game with your partner.
+    <p>
     {% next_button %}
 
 {% endblock %}

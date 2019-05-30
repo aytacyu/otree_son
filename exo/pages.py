@@ -8,7 +8,8 @@ class Introduction(Page):
         partner = self.player.get_others_in_group()[0]
         return {
                 'your_color': '{}'.format(self.player.color),
-                'partner_color': '{}'.format(partner.color)
+                'partner_color': '{}'.format(partner.color),
+                'round_number': '{}' .format(self.round_number)
         }
 
 
@@ -21,9 +22,13 @@ class Send(Page):
 
     def is_displayed(self):
         return self.player.id_in_group == 1
+
     def vars_for_template(self):
+        partner = self.player.get_others_in_group()[0]
         return {
-                'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2)
+                'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
+                'your_color': '{}'.format(self.player.color),
+                'partner_color': '{}'.format(partner.color)
         }
 
 
@@ -41,12 +46,14 @@ class SendBack(Page):
     def is_displayed(self):
         return self.player.id_in_group == 2
 
+
     def vars_for_template(self):
-
+        partner = self.player.get_others_in_group()[0]
         return {
-
             'earnings': Constants.endowment_Receiver + self.group.sent_amount,
-            'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2)
+            'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
+            'your_color': '{}'.format(self.player.color),
+            'partner_color': '{}'.format(partner.color)
         }
     """
     def sent_back_amount_max(self):

@@ -56,60 +56,84 @@ class Player(BasePlayer):
     def role(self):
         return {1: 'A', 2: 'B'}[self.id_in_group]
 
-
     department = models.StringField()
 
+    age = models.StringField(choices=['<24', '25-34', '35-44', '45-54', '>55'], widget=widgets.RadioSelect)
 
-    age = models.StringField(choices=[ '<24','25-34','35-44','45-54', '>55' ],widget=widgets.RadioSelect)
+    gender = models.StringField(choices=['Female', 'Male'], widget=widgets.RadioSelect)
 
+    average_monthly_income = models.StringField(widget=widgets.RadioSelect)
 
-    gender = models.StringField(choices=[ 'Female','Male' ],widget=widgets.RadioSelect)
-
-
-    average_monthly_income = models.StringField(widget = widgets.RadioSelect)
     def average_monthly_income_choices(self):
-        choices = [ '500-1000','1000-2000','2000-3000','3000-4000','4000-5000','5000+']
+        choices = ['500-1000', '1000-2000', '2000-3000', '3000-4000', '4000-5000', '5000+']
         return choices
 
     Choice_of_investment_options = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options_choices(self):
-        choices = ['8₺ with probability 1/10 , 6,4₺ with probability 9/10', '15,4₺ with probability 1/10 , 0,4₺ with probability 9/10']
+        choices = ['8₺ with probability %10 , 6,4₺ with probability %90',
+                   '15,4₺ with probability %10 , 0,4₺ with probability %90']
         return choices
 
     Choice_of_investment_options2 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options2_choices(self):
-        choices = ['8₺ with probability 2/10 , 6,4₺ with probability 8/10', '15,4₺ with probability 2/10 , 0,4₺ with probability 8/10']
+        choices = ['8₺ with probability %20 , 6,4₺ with probability %80',
+                   '15,4₺ with probability %20 , 0,4₺ with probability %80']
         return choices
 
     Choice_of_investment_options3 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options3_choices(self):
-        choices = ['8₺ with probability 3/10 , 6,4₺ with probability 7/10', '15,4₺ with probability 3/10 , 0,4₺ with probability 7/10']
+        choices = ['8₺ with probability %30 , 6,4₺ with probability %70',
+                   '15,4₺ with probability %30 , 0,4₺ with probability %70']
         return choices
+
     Choice_of_investment_options4 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options4_choices(self):
-        choices = ['8₺ with probability 4/10 , 6,4₺ with probability 6/10', '15,4₺ with probability 4/10 , 0,4₺ with probability 6/10']
+        choices = ['8₺ with probability %40 , 6,4₺ with probability %60',
+                   '15,4₺ with probability %40 , 0,4₺ with probability %60']
         return choices
+
     Choice_of_investment_options5 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options5_choices(self):
-        choices = ['8₺ with probability 5/10 , 6,4₺ with probability 5/10', '15,4₺ with probability 5/10 , 0,4₺ with probability 5/10']
+        choices = ['8₺ with probability %50 , 6,4₺ with probability %50',
+                   '15,4₺ with probability %50 , 0,4₺ with probability %50']
         return choices
+
     Choice_of_investment_options6 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options6_choices(self):
-        choices = ['8₺ with probability 6/10 , 6,4₺ with probability 4/10', '15,4₺ with probability 6/10 , 0,4₺ with probability 4/10']
+        choices = ['8₺ with probability %60 , 6,4₺ with probability %40',
+                   '15,4₺ with probability %60 , 0,4₺ with probability %40']
         return choices
+
     Choice_of_investment_options7 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options7_choices(self):
-        choices = ['8₺ with probability 7/10 , 6,4₺ with probability 3/10', '15,4₺ with probability 7/10 , 0,4₺ with probability 3/10']
+        choices = ['8₺ with probability %70 , 6,4₺ with probability %30',
+                   '15,4₺ with probability %70 , 0,4₺ with probability %30']
         return choices
+
     Choice_of_investment_options8 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options8_choices(self):
-        choices = ['8₺ with probability 8/10 , 6,4₺ with probability 2/10', '15,4₺ with probability 8/10 , 0,4₺ with probability 2/10']
+        choices = ['8₺ with probability %80 , 6,4₺ with probability %20',
+                   '15,4₺ with probability %80 , 0,4₺ with probability %20']
         return choices
+
     Choice_of_investment_options9 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options9_choices(self):
-        choices = ['8₺ with probability 9/10 , 6,4₺ with probability 1/10', '15,4₺ with probability 2/10 , 0,4₺ with probability 8/10']
+        choices = ['8₺ with probability %90 , 6,4₺ with probability %10',
+                   '15,4₺ with probability %90 , 0,4₺ with probability %10']
         return choices
+
     Choice_of_investment_options10 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options10_choices(self):
-        choices = ['8₺ with probability 0/10 , 6,4₺ with probability 10/10', '15,4₺ with probability 0/10 , 0,4₺ with probability 10/10']
+        choices = ['8₺ with probability %100 , 6,4₺ with probability %0',
+                   '15,4₺ with probability %100 , 0,4₺ with probability %0']
         return choices

@@ -2,16 +2,28 @@
 {% load otree %}
 
 {% block title %}
-    Instructions
+   {{ round_number }} . ROUND
 {% endblock %}
 
 {% block content %}
 
-    {% include Constants.instructions_template %}
+    <p>You are assigned to group : <b>{% if your_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else %}
+      <p style="color: blue; font-size:100%"> BLUE </p>
+    {% endif %} </b></p>
 
-<p>You are now assigned to group : <b>{{ your_color }} </b></p>
-<p>Your partner is now assigned to group : <b>{{ partner_color }} </b></p>
-{% include Constants.table_template %}
+
+    <p>Your partner is assigned to group : <b>{% if partner_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else%}
+      <p style="color: blue; font-size:100%"> BLUE </p> </b></p>
+
+
+    {% endif %}
+    <p>
+    Now, you will play a gift giving game with your partner.
+    <p>
     {% next_button %}
 
 {% endblock %}

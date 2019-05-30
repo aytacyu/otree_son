@@ -6,6 +6,25 @@
 {% endblock %}
 
 {% block content %}
+
+
+<p>Your group : <b>{% if your_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else %}
+      <p style="color: blue; font-size:100%"> BLUE </p>
+    {% endif %} </b></p>
+
+
+ <p>Your partner group : <b>{% if partner_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else%}
+      <p style="color: blue; font-size:100%"> BLUE </p>
+
+    {% endif %} </b></p>
+
+    <p>
+    <p>
+
 <p>
     Your Partner sent you {{group.sent_amount}}.
     Your earnings at the end of the first period are {{earnings}}.
