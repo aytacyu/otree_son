@@ -1,0 +1,101 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+End of round, Results
+{% endblock %}
+
+{% block content %}
+
+{% if player.role == 'A' %}
+        <p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Your</th>
+    <th class="tg-0lax">Role</th>
+    <th class="tg-0lax">Transfer</th>
+    <th class="tg-0lax">Earnings</th>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Period 1</td>
+    <td class="tg-0lax">Decider</td>
+    <td class="tg-0lax">{{ group.sent_amount }}</td>
+    <td class="tg-0lax">{{ player1_period1_amount }}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Period 2</td>
+    <td class="tg-0lax">Receiver</td>
+    <td class="tg-0lax">{{ group.sent_back_amount }}</td>
+    <td class="tg-0lax">{{ player1_period2_amount }}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax" colspan="3">End of this round (ED x ER)</td>
+    <td class="tg-0lax">{{ player.payoff }}</td>
+  </tr>
+</table>
+        <p>
+            The first Decider role was yours.
+            You chose to send your partner <strong>{{ group.sent_amount }}</strong>,
+            and you had {{ player1_period1_amount }} in Period 1.
+        </p>
+            Your partner returned <strong>{{ group.sent_back_amount }}</strong>,
+            and you had {{ player1_period2_amount }} in Period 2.
+        </p>
+            Your Payoff in this round   = <strong>{{ player.payoff }}</strong>.
+        </p>
+        {% else %}
+        <p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Your</th>
+    <th class="tg-0lax">Role</th>
+    <th class="tg-0lax">Transfer</th>
+    <th class="tg-0lax">Earnings</th>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Period 1</td>
+    <td class="tg-0lax">Receiver</td>
+    <td class="tg-0lax">{{ group.sent_amount }}</td>
+    <td class="tg-0lax">{{ player2_period1_amount }}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Period 2</td>
+    <td class="tg-0lax">Deceider</td>
+    <td class="tg-0lax">{{ group.sent_back_amount }}</td>
+    <td class="tg-0lax">{{ player2_period2_amount }}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax" colspan="3">End of this round (ED x ER)</td>
+    <td class="tg-0lax">{{ player.payoff }}</td>
+  </tr>
+</table>
+        <p>
+            In the first period, you was Receiver.
+            Your partner sent you <strong> {{ group.sent_amount }}</strong> ,
+            you had {{ player2_period1_amount }} in Period 1.
+          </p>
+            In second period, you chose to send your partner <strong> {{ group.sent_back_amount }} </strong> ,
+            thus you had {{ player2_period2_amount }} in Period 2.
+
+        </p>
+            Your Payoff in this round   = <strong>{{ player.payoff }}</strong>.
+        </p>
+    {% endif %}
+
+    <p>{% next_button %}</p>
+
+{% include Constants.table_template %}
+
+{% endblock %}

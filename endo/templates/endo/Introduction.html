@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+   {{ round_number }} . ROUND
+{% endblock %}
+
+{% block content %}
+
+    <p>You are assigned to group : <b>{% if your_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else %}
+      <p style="color: blue; font-size:100%"> BLUE </p>
+    {% endif %} </b></p>
+
+    <p>
+    Now, you will play a gift giving game with your partner.
+    How much will you want to contribute to be matched with a partner from same group?
+    </p>
+
+
+    {% formfield player.WTP label=prompt %}
+    <p>
+    {% next_button %}
+
+{% endblock %}

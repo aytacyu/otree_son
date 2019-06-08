@@ -19,6 +19,12 @@ SESSION_CONFIGS = [
     'app_sequence': ['exo'],
     },
     {
+    'name': 'my_PoG_endo',
+    'display_name': "PoGGameEndo",
+    'num_demo_participants': 4,
+    'app_sequence': ['endo'],
+    },
+    {
     'name': 'my_PoG_control',
     'display_name': "PoGGameControl",
     'num_demo_participants': 2,
