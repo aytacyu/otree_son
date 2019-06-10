@@ -43,11 +43,12 @@ class Subsession(BaseSubsession):
         all_players = self.get_players()
         blue_players = [p for p in all_players if p.color == 'BLUE']
         red_players = [p for p in all_players if p.color == 'RED']
-        # print("before:{}".format(all_players))
-        all_players.sort(key=lambda x: x.WTP, reverse=True)
-        # print("after:{}".format(all_players))
+        player_iter_list = self.get_players()
+        print("before:{}".format(player_iter_list))
+        player_iter_list.sort(key=lambda x: x.WTP, reverse=True)
+        print("after:{}".format(player_iter_list))
         group_matrix = []
-        for pl in all_players:
+        for pl in player_iter_list:
             print(("searching for player:{}".format(pl.participant.id_in_session)))
 
             if pl in all_players:
