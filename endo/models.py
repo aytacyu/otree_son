@@ -31,9 +31,9 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     def creating_session(self):
         if self.round_number == 1:
+            colors = itertools.cycle(['BLUE', 'RED'])
             for p in self.get_players():
-                p.color = random.choice(['RED', 'BLUE']);
-
+                p.color = next(colors)
         else:
             for p in self.get_players():
                 p.color = p.in_round(self.round_number - 1).color
@@ -48,28 +48,47 @@ class Subsession(BaseSubsession):
         # print("after:{}".format(all_players))
         group_matrix = []
         for pl in all_players:
-            all_players.remove(pl)
-            if pl.WTP > random.randint(0, 10):
-                if pl.color == 'RED':
+            print(("searching for player:{}".format(pl.participant.id_in_session)))
+
+            if pl in all_players:
+                all_players.remove(pl)
+                if pl.color == "RED":
                     red_players.remove(pl)
-                    if len(red_players) > 0:
-                        partner = red_players.pop()
-                    else:
-                        partner = blue_players.pop()
-                elif pl.color == 'BLUE':
+                else:
                     blue_players.remove(pl)
-                    if len(blue_players) > 0:
-                        partner = blue_players.pop()
-                    else:
-                        partner = red_players.pop()
+
+
+                if pl.WTP > random.randint(0, 10):
+                    print(("player:{} won".format(pl)))
+                    if pl.color == 'RED':
+                        print(("player:{} is red".format(pl)))
+                        if len(red_players) > 0:
+                            partner = random.choice(red_players)
+                        else:
+                            partner = random.choice(blue_players)
+                    elif pl.color == 'BLUE':
+                        print(("player:{} is blue".format(pl)))
+                        if len(blue_players) > 0:
+                            partner = random.choice(blue_players)
+                        else:
+                            partner = random.choice(red_players)
+                else:
+                    print(("player:{} lost".format(pl)))
+                    partner = random.choice(all_players)
+
+                print("partner : {}".format(partner))
+                print(("all players:{}".format(all_players)))
                 all_players.remove(partner)
-            else:
-                partner = all_players.pop()
-                if partner.color == 'RED':
+                if partner.color == "RED":
                     red_players.remove(partner)
                 else:
                     blue_players.remove(partner)
-            group_matrix.append([pl, partner])
+
+                group_matrix.append([pl, partner])
+
+                print(("blue players :{}".format(blue_players)))
+                print(("red players:{}".format(red_players)))
+                print("group matrix: {}".format(group_matrix))
 
         self.set_group_matrix(group_matrix)
         print(self.get_group_matrix())
