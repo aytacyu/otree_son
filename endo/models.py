@@ -48,8 +48,9 @@ class Subsession(BaseSubsession):
         player_iter_list.sort(key=lambda x: x.WTP, reverse=True)
         print("after:{}".format(player_iter_list))
         group_matrix = []
+        rand_num = random.randint(0, 10)
         for pl in player_iter_list:
-            print(("searching for player:{}".format(pl.participant.id_in_session)))
+            print(("searching for player:{}".format(pl.padrticipant.id_in_session)))
 
             if pl in all_players:
                 all_players.remove(pl)
@@ -59,7 +60,7 @@ class Subsession(BaseSubsession):
                     blue_players.remove(pl)
 
 
-                if pl.WTP > random.randint(0, 10):
+                if pl.WTP > rand_num:
                     print(("player:{} won".format(pl)))
                     if pl.color == 'RED':
                         print(("player:{} is red".format(pl)))
