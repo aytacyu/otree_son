@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Final Results
+{% endblock %}
+
+{% block content %}
+
+    Your Payoff at the end of the game  = {{ overall_earnings }}.
+
+    <p>{% next_button %}</p>
+
+{% include Constants.table_template %}
+
+{% endblock %}

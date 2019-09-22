@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+   You are the first Receiver.
+{% endblock %}
+
+{% block content %}
+
+
+<p>Your group : <b>{% if your_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else %}
+      <p style="color: blue; font-size:100%"> BLUE </p>
+    {% endif %} </b></p>
+
+
+ <p>Your partner group : <b>{% if partner_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else%}
+      <p style="color: blue; font-size:100%"> BLUE </p>
+
+    {% endif %} </b></p>
+ <p>
+
+    So just click next button.
+
+</p>
+
+    <p>{% next_button %}</p>
+    {% include Constants.table_template %}
+
+{% endblock %}

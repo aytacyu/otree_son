@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    4 period until now.
+{% endblock %}
+
+{% block content %}
+
+<p>Your group : <b>{% if your_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else %}
+      <p style="color: blue; font-size:100%"> BLUE </p>
+    {% endif %} </b></p>
+
+
+ <p>Your partner group : <b>{% if partner_color == 'RED' %}
+      <p style="color: red; font-size:100%;"> RED </p>
+    {% else%}
+      <p style="color: blue; font-size:100%"> BLUE </p>
+
+    {% endif %} </b></p>
+ <p>
+
+<p>
+    You are the Decider and you have {{Constants.endowment_Decider}}.
+    How much of your {{Constants.endowment_Decider}} do you transfer (0-7)?
+</p>
+
+    {% formfield group.sent_6 label=prompt %}
+
+
+
+    <p>{% next_button %}</p>
+    {% include Constants.table_template %}
+
+{% endblock %}

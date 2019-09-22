@@ -2,7 +2,7 @@
 {% load otree %}
 
 {% block title %}
-    Period 1, Your Choice
+    3 period until now.
 {% endblock %}
 
 {% block content %}
@@ -20,18 +20,18 @@
       <p style="color: blue; font-size:100%"> BLUE </p>
 
     {% endif %} </b></p>
-    <p>
-    <p>
-    You are Decider. Now you have {{Constants.endowment_Decider}}. How much will you send to Receiver?
-    </p>
+ <p>
+
+<p>
+    You are the Decider and you have {{Constants.endowment_Decider}}.
+    How much of your {{Constants.endowment_Decider}} do you transfer (0-7)?
+</p>
+
+    {% formfield group.sent_5 label=prompt %}
 
 
-    {% formfield group.sent_amount label=prompt %}
 
-    <p>
-    {% next_button %}
-    </p>
-
+    <p>{% next_button %}</p>
     {% include Constants.table_template %}
 
 {% endblock %}

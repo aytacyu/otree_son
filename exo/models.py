@@ -17,8 +17,8 @@ tripled. The exo game was first proposed by
 
 class Constants(BaseConstants):
     name_in_url = 'exo'
-    players_per_group = 2
-    num_rounds = 10
+    players_per_group = 8
+    num_rounds = 2
 
     instructions_template = 'exo/instructions.html'
     table_template = 'exo/table.html'
@@ -44,21 +44,54 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    sent_amount = models.CurrencyField(
-        min=0, max=Constants.endowment_Decider-2,
-        doc="""Amount sent by P1""",
+    sent_2 = models.CurrencyField(
+        min=0, max=Constants.endowment_Decider - 2,
+        doc="""Amount sent by P2""",
     )
-
-    sent_back_amount = models.CurrencyField(
-        doc="""Amount sent back by P2""",
-        min=c(0), max=Constants.endowment_Decider-2,
+    sent_3 = models.CurrencyField(
+        min=0, max=Constants.endowment_Decider - 2,
+        doc="""Amount sent by P3""",
+    )
+    sent_4 = models.CurrencyField(
+        min=0, max=Constants.endowment_Decider - 2,
+        doc="""Amount sent by P4""",
+    )
+    sent_5 = models.CurrencyField(
+        min=0, max=Constants.endowment_Decider - 2,
+        doc="""Amount sent by P5""",
+    )
+    sent_6 = models.CurrencyField(
+        min=0, max=Constants.endowment_Decider - 2,
+        doc="""Amount sent by P6""",
+    )
+    sent_7 = models.CurrencyField(
+        min=0, max=Constants.endowment_Decider - 2,
+        doc="""Amount sent by P7""",
+    )
+    sent_8 = models.CurrencyField(
+        min=0, max=Constants.endowment_Decider - 2,
+        doc="""Amount sent by P8""",
     )
 
     def set_payoffs(self):
         p1 = self.get_player_by_id(1)
         p2 = self.get_player_by_id(2)
-        p1.payoff = (Constants.endowment_Decider - self.sent_amount) *( Constants.endowment_Receiver + self.sent_back_amount )
-        p2.payoff = (Constants.endowment_Decider - self.sent_back_amount) *( Constants.endowment_Receiver + self.sent_amount )
+        p3 = self.get_player_by_id(3)
+        p4 = self.get_player_by_id(4)
+        p5 = self.get_player_by_id(5)
+        p6 = self.get_player_by_id(6)
+        p7 = self.get_player_by_id(7)
+        p8 = self.get_player_by_id(8)
+
+        p1.payoff = 2 * (Constants.endowment_Receiver + self.sent_2)
+        p2.payoff = (Constants.endowment_Decider - self.sent_2) * (Constants.endowment_Receiver + self.sent_3)
+        p3.payoff = (Constants.endowment_Decider - self.sent_3) * (Constants.endowment_Receiver + self.sent_4)
+        p4.payoff = (Constants.endowment_Decider - self.sent_4) * (Constants.endowment_Receiver + self.sent_5)
+        p5.payoff = (Constants.endowment_Decider - self.sent_5) * (Constants.endowment_Receiver + self.sent_6)
+        p6.payoff = (Constants.endowment_Decider - self.sent_6) * (Constants.endowment_Receiver + self.sent_7)
+        p7.payoff = (Constants.endowment_Decider - self.sent_7) * (Constants.endowment_Receiver + self.sent_8)
+        p8.payoff = (Constants.endowment_Decider - self.sent_8) * (
+                    self.sent_2 + self.sent_3 + self.sent_4 + self.sent_5 + self.sent_6 + self.sent_7 + self.sent_8) / 7
 
 
 class Player(BasePlayer):
@@ -66,7 +99,7 @@ class Player(BasePlayer):
     overall_payoff = models.CurrencyField(initial=0)
 
     def role(self):
-        return {1: 'A', 2: 'B'}[self.id_in_group]
+        return {1: 'P1', 2: 'P2', 3: 'P3', 4: 'P4', 5: 'P5', 6: 'P6', 7: 'P7', 8: 'P8'}[self.id_in_group]
 
     department = models.StringField()
 

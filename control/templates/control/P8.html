@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    6 period until now.
+{% endblock %}
+
+{% block content %}
+<p>
+    You are the Decider and you have {{Constants.endowment_Decider}}.
+    How much of your {{Constants.endowment_Decider}} do you transfer (0-7)?
+</p>
+
+    {% formfield group.sent_8 label=prompt %}
+
+    <p>{% next_button %}</p>
+    {% include Constants.table_template %}
+
+{% endblock %}

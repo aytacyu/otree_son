@@ -6,8 +6,8 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 1.00,
-    'participation_fee': 0.00,
+    'real_world_currency_per_point': 0,
+    'participation_fee': 0,
     'doc': "",
 }
 
@@ -21,13 +21,13 @@ SESSION_CONFIGS = [
     {
     'name': 'my_PoG_endo',
     'display_name': "PoGGameEndo",
-    'num_demo_participants': 4,
+    'num_demo_participants': 8,
     'app_sequence': ['endo'],
     },
     {
     'name': 'my_PoG_control',
     'display_name': "PoGGameControl",
-    'num_demo_participants': 2,
+    'num_demo_participants': 8,
     'app_sequence': ['control'],
     }
     ]
@@ -71,7 +71,7 @@ SESSION_CONFIGS = [
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
+REAL_WORLD_CURRENCY_CODE = 'TL'
 USE_POINTS = True
 
 ROOMS = [
