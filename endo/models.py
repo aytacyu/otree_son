@@ -23,7 +23,6 @@ class Constants(BaseConstants):
     instructions_template = 'endo/instructions.html'
     table_template = 'endo/table.html'
 
-
     # Initial amount allocated to players
     endowment_Decider = c(9)
     endowment_Receiver = c(1)
@@ -31,105 +30,69 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
+
     def creating_session(self):
         if self.round_number == 1:
+            colors = itertools.cycle(['BLUE', 'RED'])
             for p in self.get_players():
-                p.color = random.choice(['RED', 'BLUE']);
-
+                p.color = next(colors)
         else:
             for p in self.get_players():
                 p.color = p.in_round(self.round_number - 1).color
         self.group_randomly()
 
-
     def assign_sequence(self):
-        all_players = self.get_players()
-        blue_players = [p for p in all_players if p.color == 'BLUE']
-        red_players = [p for p in all_players if p.color == 'RED']
-        player_iter_list = self.get_players()
-        print("before:{}".format(player_iter_list))
-        player_iter_list.sort(key=lambda x: x.WTP, reverse=True)
-        print("after:{}".format(player_iter_list))
-
+        blue_players = [p for p in self.get_players() if p.color == 'BLUE']
         blue_players.sort(key=lambda x: x.WTP, reverse=True)
+
+        red_players = [p for p in self.get_players() if p.color == 'RED']
         red_players.sort(key=lambda x: x.WTP, reverse=True)
 
         rand_num = random.randint(0, 10)
-        index = 1
-        for pl in player_iter_list:
-            print(("searching for player:{}".format(pl.participant.id_in_session)))
-            #if pl in all_players:
-            all_players.remove(pl)
-            if pl.color == "RED":
-                red_players.remove(pl)
-            else:
-                blue_players.remove(pl)
+        if blue_players[0].WTP >= red_players[0].WTP:
+            pl = blue_players.pop(0)
+        else:
+            pl = red_players.pop(0)
+        pl.sequence = 1
+        print("player:{0} set to sequence 1".format(pl.participant.id_in_session))
+        for index in range(2, self.session.config['num_demo_participants']):
+            pl.session_random_number = rand_num
+            print("searching for player:{0} color :{1}".format(pl.participant.id_in_session, pl.color))
             print("WTP is : {}, random number is : {}".format(pl.WTP, rand_num))
+
             if pl.WTP > rand_num:
-                print(("player:{} won".format(pl)))
+                print("player:{} won".format(pl.participant.id_in_session))
                 if pl.color == 'RED':
-                    print(("player:{} is red".format(pl)))
                     if len(red_players) > 0:
-                        partner = red_players[0]
-                        # partner = random.choice(red_players)
+                        next_pl = red_players.pop(0)
                     else:
-                        partner = blue_players[-1]
-                        # partner = random.choice(blue_players)
+                        next_pl = blue_players.pop(0)
                 elif pl.color == 'BLUE':
-                    print(("player:{} is blue".format(pl)))
                     if len(blue_players) > 0:
-                        partner = blue_players[0]
-                        # partner = random.choice(blue_players)
+                        next_pl = blue_players.pop(0)
                     else:
-                        partner = red_players[-1]
-                        # partner = random.choice(red_players)
+                        next_pl = red_players.pop(0)
             else:
-                print(("player:{} lost".format(pl)))
-                # partner = random.choice(all_players)
-
+                print("player:{} lost".format(pl.participant.id_in_session))
                 if pl.color == 'RED':
-                    print(("player:{} is red".format(pl)))
                     if len(blue_players) > 0:
-                        partner = blue_players[-1]
-                        # partner = random.choice(red_players)
+                        next_pl = blue_players.pop(0)
                     else:
-                        partner = red_players[0]
-                        # partner = random.choice(blue_players)
+                        next_pl = red_players.pop(0)
                 elif pl.color == 'BLUE':
-                    print(("player:{} is blue".format(pl)))
                     if len(red_players) > 0:
-                        partner = red_players[-1]
-                        # partner = random.choice(blue_players)
+                        next_pl = red_players.pop(0)
                     else:
-                        partner = blue_players[0]
-                        # partner = random.choice(red_players)
+                        next_pl = blue_players.pop(0)
+            print("next player:{0} color :{1}".format(next_pl.participant.id_in_session, next_pl.color))
 
-            print("partner : {}".format(partner))
-            print(("all players:{}".format(all_players)))
-            all_players.remove(partner)
-            if partner.color == "RED":
-                red_players.remove(partner)
-            else:
-                blue_players.remove(partner)
-            print(("blue players :{}".format(blue_players)))
-            print(("red players:{}".format(red_players)))
+            next_pl.sequence = index
+            print("player:{0} set to sequence {1}".format(next_pl.participant.id_in_session, index))
+            pl = next_pl
 
-            print(pl.sequence)
-            print(partner.sequence)
-            if pl.sequence == 0:
-                pl.sequence = index
-                #print(("player:{} set to sequence P{}".format(pl.participant.id_in_session),pl.sequence))
-                partner.sequence = index +1
-                index =index + 2
-            else:
-                partner.sequence = pl.sequence + 1
-                index = index + 1
-            print(pl.sequence)
-            print(partner.sequence)
-            #print(("player:{} set to sequence P{}".format(partner.participant.id_in_session), partner.sequence))
-
-        all_players.sort(key=lambda x: x.sequence, reverse=True)
-        print(player.sequence for player in all_players)
+        for pl in blue_players + red_players:
+            pl.sequence = self.session.config['num_demo_participants']
+            print("player:{0} set to sequence {1}".format(pl.participant.id_in_session, pl.sequence))
 
 
 class Group(BaseGroup):
@@ -187,17 +150,14 @@ class Player(BasePlayer):
     color = models.StringField()
     WTP = models.CurrencyField(initial=0)
     overall_payoff = models.CurrencyField(initial=0)
-
+    session_random_number = models.IntegerField(initial=10)
     sequence = models.IntegerField(initial=0)
 
     department = models.StringField()
 
+    age = models.StringField(choices=['<24', '25-34', '35-44', '45-54', '>55'], widget=widgets.RadioSelect)
 
-    age = models.StringField(choices=[ '<24','25-34','35-44','45-54', '>55' ],widget=widgets.RadioSelect)
-
-
-    gender = models.StringField(choices=[ 'Female','Male' ],widget=widgets.RadioSelect)
-
+    gender = models.StringField(choices=['Female', 'Male'], widget=widgets.RadioSelect)
 
     average_monthly_income = models.StringField(widget = widgets.RadioSelect)
     def average_monthly_income_choices(self):
@@ -205,28 +165,37 @@ class Player(BasePlayer):
         return choices
 
     Choice_of_investment_options = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options_choices(self):
         choices = ['8₺ with probability %10 , 6,4₺ with probability %90', '15,4₺ with probability %10 , 0,4₺ with probability %90']
         return choices
 
     Choice_of_investment_options2 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options2_choices(self):
         choices = ['8₺ with probability %20 , 6,4₺ with probability %80', '15,4₺ with probability %20 , 0,4₺ with probability %80']
         return choices
 
     Choice_of_investment_options3 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options3_choices(self):
         choices = ['8₺ with probability %30 , 6,4₺ with probability %70', '15,4₺ with probability %30 , 0,4₺ with probability %70']
         return choices
+
     Choice_of_investment_options4 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options4_choices(self):
         choices = ['8₺ with probability %40 , 6,4₺ with probability %60', '15,4₺ with probability %40 , 0,4₺ with probability %60']
         return choices
+
     Choice_of_investment_options5 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options5_choices(self):
         choices = ['8₺ with probability %50 , 6,4₺ with probability %50', '15,4₺ with probability %50 , 0,4₺ with probability %50']
         return choices
+
     Choice_of_investment_options6 = models.StringField(widget=widgets.RadioSelect)
+
     def Choice_of_investment_options6_choices(self):
         choices = ['8₺ with probability %60 , 6,4₺ with probability %40', '15,4₺ with probability %60 , 0,4₺ with probability %40']
         return choices

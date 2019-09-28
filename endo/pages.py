@@ -27,17 +27,18 @@ class SendBackWaitPage(WaitPage):
 
 
 class P8(Page):
-    """This page is only for P1
-    P1 sends amount (all, some, or none) to P2 """
+    """This page is only for Player with sequence 8 """
 
     form_model = 'group'
     form_fields = ['sent_8']
 
     def is_displayed(self):
-        return self.player.id_in_group == 8
+        return self.player.sequence == 8
 
     def vars_for_template(self):
-        partner = self.player.get_others_in_group()[0]
+        for pl in self.subsession.get_players():
+            if pl.sequence == self.player.sequence - 1:
+                partner = pl
         return {
                 'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
                 'your_color': '{}'.format(self.player.color),
@@ -52,10 +53,12 @@ class P7(Page):
     form_fields = ['sent_7']
 
     def is_displayed(self):
-        return self.player.id_in_group == 7
+        return self.player.sequence == 7
 
     def vars_for_template(self):
-        partner = self.player.get_others_in_group()[0]
+        for pl in self.subsession.get_players():
+            if pl.sequence == self.player.sequence - 1:
+                partner = pl
         return {
                 'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
                 'your_color': '{}'.format(self.player.color),
@@ -70,10 +73,12 @@ class P6(Page):
     form_fields = ['sent_6']
 
     def is_displayed(self):
-        return self.player.id_in_group == 6
+        return self.player.sequence == 6
 
     def vars_for_template(self):
-        partner = self.player.get_others_in_group()[0]
+        for pl in self.subsession.get_players():
+            if pl.sequence == self.player.sequence - 1:
+                partner = pl
         return {
                 'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
                 'your_color': '{}'.format(self.player.color),
@@ -88,10 +93,12 @@ class P5(Page):
     form_fields = ['sent_5']
 
     def is_displayed(self):
-        return self.player.id_in_group == 5
+        return self.player.sequence == 5
 
     def vars_for_template(self):
-        partner = self.player.get_others_in_group()[0]
+        for pl in self.subsession.get_players():
+            if pl.sequence == self.player.sequence - 1:
+                partner = pl
         return {
                 'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
                 'your_color': '{}'.format(self.player.color),
@@ -106,10 +113,12 @@ class P4(Page):
     form_fields = ['sent_4']
 
     def is_displayed(self):
-        return self.player.id_in_group == 4
+        return self.player.sequence == 4
 
     def vars_for_template(self):
-        partner = self.player.get_others_in_group()[0]
+        for pl in self.subsession.get_players():
+            if pl.sequence == self.player.sequence - 1:
+                partner = pl
         return {
                 'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
                 'your_color': '{}'.format(self.player.color),
@@ -124,10 +133,12 @@ class P3(Page):
     form_fields = ['sent_3']
 
     def is_displayed(self):
-        return self.player.id_in_group == 3
+        return self.player.sequence == 3
 
     def vars_for_template(self):
-        partner = self.player.get_others_in_group()[0]
+        for pl in self.subsession.get_players():
+            if pl.sequence == self.player.sequence - 1:
+                partner = pl
         return {
                 'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
                 'your_color': '{}'.format(self.player.color),
@@ -142,10 +153,12 @@ class P2(Page):
     form_fields = ['sent_2']
 
     def is_displayed(self):
-        return self.player.id_in_group == 2
+        return self.player.sequence == 2
 
     def vars_for_template(self):
-        partner = self.player.get_others_in_group()[0]
+        for pl in self.subsession.get_players():
+            if pl.sequence == self.player.sequence - 1:
+                partner = pl
         return {
                 'prompt': 'Please an amount from 0 to {}'.format(Constants.endowment_Decider-2),
                 'your_color': '{}'.format(self.player.color),
@@ -157,10 +170,12 @@ class P1(Page):
     """This page is only for P4"""
 
     def is_displayed(self):
-        return self.player.id_in_group == 1
+        return self.player.sequence == 1
 
     def vars_for_template(self):
-        partner = self.player.get_others_in_group()[0]
+        for pl in self.subsession.get_players():
+            if pl.sequence == 2:
+                partner = pl
         return {
                 'your_color': '{}'.format(self.player.color),
                 'partner_color': '{}'.format(partner.color)
